@@ -8,18 +8,23 @@
 // Silakan bereksplorasi untuk memastikan semua fungsi berjalan dengan baik
 
 import { addBooks, listBooks, searchBook } from './functions/bookManager';
-console.log('\n\x1b[32m=====================================\x1b[0m');
-console.log('\x1b[36mBook Management Application - Week 6\x1b[0m');
-console.log('\x1b[32m=====================================\x1b[0m');
+
+const GREEN = '\x1b[32m';
+const BLUE = '\x1b[36m';
+const RESET = '\x1b[0m';
+
+console.log(`\n${GREEN}=====================================${RESET}`);
+console.log(`${BLUE}mBook Management Application - Week 6${RESET}`);
+console.log(`${GREEN}=====================================${RESET}`);
 
 // Mulai pengujian di bawah ini :
 
 // Display all books but the Books not yet added -- still empty list
-console.log('\n\x1b[32mDisplay all Books : - still empty list - \x1b[0m');
+console.log(`\n${GREEN}Display all Books : - still empty list - ${RESET}`);
 listBooks();
 
 // Add some Books
-console.log('\n\x1b[32mAdding some Books :\x1b[0m');
+console.log(`\n${GREEN}Adding some Books :${RESET}`);
 
 addBooks('Kebaikan itu keren', 'Hendrawan', 2023);
 
@@ -34,10 +39,10 @@ addBooks('Frontend Web-developer', 'WPH-Academy', 2019);
 addBooks('Autocad: Teori, Tutorial, dan Training', 'Andi Khrisbianto', 2009);
 
 // Display all books
-console.log('\n\x1b[32mDisplay all Books :\x1b[0m');
+console.log(`\n${GREEN}Display all Books :${RESET}`);
 listBooks();
 
-// Search books by Title
+// Search books by Title =
 
 // Search books without parameter
 searchBook();
@@ -50,3 +55,5 @@ searchBook('master');
 
 // Search books which have word 'xxx' --- not found
 searchBook('xxx');
+
+// Finish

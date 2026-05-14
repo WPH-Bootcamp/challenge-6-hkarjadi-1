@@ -22,6 +22,14 @@
 import books from '../data/books';
 import Book from '../types/index';
 
+const RED = '\x1b[31m';
+const GREEN = '\x1b[32m';
+const YELLOW = '\x1b[33m';
+const PURPLE = '\x1b[34m';
+const PINK = '\x1b[35m';
+const BLUE = '\x1b[36m';
+const RESET = '\x1b[0m';
+
 function addBooks(
   title: string,
   author: string,
@@ -35,20 +43,20 @@ function addBooks(
   };
   books.push(newBook);
   console.log(
-    `\n\x1b[31m*** Book added:\x1b[0m \x1b[33m"${title}"\x1b[0m \x1b[36mby ${author} (${publicationYear})\x1b[0m`
+    `\n${RED}*** Book added:${RESET} ${YELLOW}"${title}"${RESET} ${BLUE}by ${author} (${publicationYear})${RESET}`
   );
 }
 
 function listBooks(): void {
-  console.log('\n\x1b[35m*** ListBooks ***\x1b[0m');
+  console.log(`\n${PINK}*** ListBooks ***${RESET}`);
   if (books.length === 0) {
-    console.log('\x1b[33m--- Empty ListBooks... ---\x1b[0m');
+    console.log(`${YELLOW}--- Empty ListBooks... ---${RESET}`);
   } else {
     books.forEach((item, index) => {
       console.log(
-        `\x1b[36m${index + 1}.\x1b[0m  \x1b[33m${item.title}\x1b[0m - \x1b[34m${
-          item.author
-        }\x1b[0m (${item.publicationYear})`
+        `${BLUE}${index + 1}.${RESET}  ${YELLOW}${
+          item.title
+        }${RESET} - ${PURPLE}${item.author}${RESET} (${item.publicationYear})`
       );
     });
   }
@@ -56,7 +64,7 @@ function listBooks(): void {
 
 function searchBook(titles?: string): void {
   console.log(
-    `\n\x1b[32m*** Search book Title : ${titles ? titles : 'without parameter'}`
+    `\n${GREEN}*** Search book Title : ${titles ? titles : 'without parameter'}`
   );
   if (!titles) {
     listBooks();
@@ -64,17 +72,17 @@ function searchBook(titles?: string): void {
     const filterbooks: Book[] = books.filter((item) =>
       item.title.toLowerCase().includes(titles.toLowerCase())
     );
-    console.log('\n\x1b[35m*** ListBooks ***\x1b[0m');
+    console.log(`\n${PINK}*** ListBooks ***${RESET}`);
     if (filterbooks.length > 0) {
       filterbooks.forEach((item, index) => {
         console.log(
-          `\x1b[36m${index + 1}.\x1b[0m  \x1b[33m${
+          `${BLUE}${index + 1}.${RESET}  ${YELLOW}${
             item.title
-          }\x1b[0m - \x1b[34m${item.author}\x1b[0m (${item.publicationYear})`
+          }${RESET} - ${PURPLE}${item.author}${RESET} (${item.publicationYear})`
         );
       });
     } else {
-      console.log('\x1b[33m--- Title not found... ---\x1b[0m');
+      console.log(`${YELLOW}--- Title not found... ---${RESET}`);
     }
   }
 }

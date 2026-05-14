@@ -24,6 +24,13 @@ exports.searchBook = searchBook;
 // Petunjuk: jika parameter title diberikan, cari buku yang cocok
 //           jika tidak diberikan, tampilkan semua buku atau berikan informasi yang sesuai
 const books_1 = __importDefault(require("../data/books"));
+const RED = '\x1b[31m';
+const GREEN = '\x1b[32m';
+const YELLOW = '\x1b[33m';
+const PURPLE = '\x1b[34m';
+const PINK = '\x1b[35m';
+const BLUE = '\x1b[36m';
+const RESET = '\x1b[0m';
 function addBooks(title, author, publicationYear) {
     const newBook = {
         id: Date.now(),
@@ -32,34 +39,34 @@ function addBooks(title, author, publicationYear) {
         publicationYear,
     };
     books_1.default.push(newBook);
-    console.log(`\n\x1b[31m*** Book added:\x1b[0m \x1b[33m"${title}"\x1b[0m \x1b[36mby ${author} (${publicationYear})\x1b[0m`);
+    console.log(`\n${RED}*** Book added:${RESET} ${YELLOW}"${title}"${RESET} ${BLUE}by ${author} (${publicationYear})${RESET}`);
 }
 function listBooks() {
-    console.log('\n\x1b[35m*** ListBooks ***\x1b[0m');
+    console.log(`\n${PINK}*** ListBooks ***${RESET}`);
     if (books_1.default.length === 0) {
-        console.log('\x1b[33m--- Empty ListBooks... ---\x1b[0m');
+        console.log(`${YELLOW}--- Empty ListBooks... ---${RESET}`);
     }
     else {
         books_1.default.forEach((item, index) => {
-            console.log(`\x1b[36m${index + 1}.\x1b[0m  \x1b[33m${item.title}\x1b[0m - \x1b[34m${item.author}\x1b[0m (${item.publicationYear})`);
+            console.log(`${BLUE}${index + 1}.${RESET}  ${YELLOW}${item.title}${RESET} - ${PURPLE}${item.author}${RESET} (${item.publicationYear})`);
         });
     }
 }
 function searchBook(titles) {
-    console.log(`\n\x1b[32m*** Search book Title : ${titles ? titles : 'without parameter'}`);
+    console.log(`\n${GREEN}*** Search book Title : ${titles ? titles : 'without parameter'}`);
     if (!titles) {
         listBooks();
     }
     else {
         const filterbooks = books_1.default.filter((item) => item.title.toLowerCase().includes(titles.toLowerCase()));
-        console.log('\n\x1b[35m*** ListBooks ***\x1b[0m');
+        console.log(`\n${PINK}*** ListBooks ***${RESET}`);
         if (filterbooks.length > 0) {
             filterbooks.forEach((item, index) => {
-                console.log(`\x1b[36m${index + 1}.\x1b[0m  \x1b[33m${item.title}\x1b[0m - \x1b[34m${item.author}\x1b[0m (${item.publicationYear})`);
+                console.log(`${BLUE}${index + 1}.${RESET}  ${YELLOW}${item.title}${RESET} - ${PURPLE}${item.author}${RESET} (${item.publicationYear})`);
             });
         }
         else {
-            console.log('\x1b[33m--- Title not found... ---\x1b[0m');
+            console.log(`${YELLOW}--- Title not found... ---${RESET}`);
         }
     }
 }
